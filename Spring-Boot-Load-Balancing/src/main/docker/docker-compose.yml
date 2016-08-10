@@ -1,0 +1,21 @@
+mariadb:
+  image: mariadb:10.1.16
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=microservicespringboot
+    - MYSQL_USER=rizki
+    - MYSQL_PASSWORD=mufrizal
+
+server1-belajar-load-balancing:
+  image: rizki.mufrizal/belajar.spring.boot.load.balancing
+  links:
+    - mariadb
+  ports:
+    - 8081:8080
+
+server2-belajar-load-balancing:
+  image: rizki.mufrizal/belajar.spring.boot.load.balancing
+  links:
+    - mariadb
+  ports:
+    - 8082:8080
