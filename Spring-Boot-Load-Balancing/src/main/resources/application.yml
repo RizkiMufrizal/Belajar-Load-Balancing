@@ -1,0 +1,93 @@
+spring:
+
+  # spring datasource jpa
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./database/belajar
+    username: rizki
+    password: mufrizal
+    poolName: SpringBootHikariCP
+    maximumPoolSize: 5
+    minimumIdle: 3
+    maxLifetime: 2000000
+    connectionTimeout: 30000
+    idleTimeout: 30000
+
+  # spring hibernate
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: H2
+
+  # jackson config
+  jackson:
+    serialization:
+      indent_output: true
+
+  # spring devtools
+  devtools:
+    livereload:
+      enabled: true
+
+  # spring thymeleaf
+  thymeleaf:
+    cache: false
+
+# tomcat konfiguration
+server:
+  tomcat:
+    access_log_enabled: true
+    basedir: target/tomcat
+
+---
+spring:
+  profiles: container
+
+  # spring datasource jpa
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_PORT_5432_TCP_ADDR}:${POSTGRES_PORT_5432_TCP_PORT}/${POSTGRES_ENV_POSTGRES_DATABASE}
+    username: ${POSTGRES_ENV_POSTGRES_USER}
+    password: ${POSTGRES_ENV_POSTGRES_PASSWORD}
+    poolName: SpringBootHikariCP
+    maximumPoolSize: 5
+    minimumIdle: 3
+    maxLifetime: 2000000
+    connectionTimeout: 30000
+    idleTimeout: 30000
+
+  # spring hibernate
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: POSTGRESQL
+
+  # jackson config
+  jackson:
+    serialization:
+      indent_output: true
+
+  # spring devtools
+  devtools:
+    livereload:
+      enabled: true
+
+  # spring thymeleaf
+  thymeleaf:
+    cache: false
+
+# tomcat konfiguration
+server:
+  tomcat:
+    access_log_enabled: true
+    basedir: target/tomcat
