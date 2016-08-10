@@ -50,10 +50,10 @@ spring:
 
   # spring datasource jpa
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${POSTGRES_PORT_5432_TCP_ADDR}:${POSTGRES_PORT_5432_TCP_PORT}/${POSTGRES_ENV_POSTGRES_DATABASE}
-    username: ${POSTGRES_ENV_POSTGRES_USER}
-    password: ${POSTGRES_ENV_POSTGRES_PASSWORD}
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MARIADB_PORT_3306_TCP_ADDR}:${MARIADB_PORT_3306_TCP_PORT}/${MARIADB_ENV_MYSQL_DATABASE}
+    username: ${MARIADB_ENV_MYSQL_USER}
+    password: ${MARIADB_ENV_MYSQL_PASSWORD}
     poolName: SpringBootHikariCP
     maximumPoolSize: 5
     minimumIdle: 3
@@ -70,7 +70,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    database-platform: POSTGRESQL
+    database-platform: org.hibernate.dialect.MySQLDialect
 
   # jackson config
   jackson:
