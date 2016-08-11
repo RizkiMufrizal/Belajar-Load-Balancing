@@ -7,9 +7,12 @@
     <title>Login</title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/template.css}"/>
     <link rel="stylesheet" th:href="@{/stylesheet/signin.css}"/>
 </head>
 <body>
+
+<div th:replace="Navbar :: navbar"></div>
 
 <div class="container">
 
@@ -40,7 +43,7 @@
                required=""/>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="remember-me" /> Remember me
+                <input type="checkbox" value="remember-me"/> Remember me
             </label>
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
