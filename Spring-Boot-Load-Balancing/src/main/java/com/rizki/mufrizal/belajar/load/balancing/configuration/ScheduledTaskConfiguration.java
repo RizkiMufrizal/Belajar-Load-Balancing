@@ -60,7 +60,7 @@ public class ScheduledTaskConfiguration {
         if (!resultSetUser.next() && !resultSetUserRole.next()) {
             preparedStatementInsertUser = connection.prepareStatement(insertTableUserSQL);
             preparedStatementInsertUser.setString(1, "administrator");
-            preparedStatementInsertUser.setString(2, bCryptPasswordEncoder.encode("administratorlabti2016"));
+            preparedStatementInsertUser.setString(2, bCryptPasswordEncoder.encode("administrator"));
             preparedStatementInsertUser.setBoolean(3, Boolean.TRUE);
             preparedStatementInsertUser.executeUpdate();
 
