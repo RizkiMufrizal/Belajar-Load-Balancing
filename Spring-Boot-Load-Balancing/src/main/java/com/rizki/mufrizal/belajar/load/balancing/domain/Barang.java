@@ -1,6 +1,7 @@
 package com.rizki.mufrizal.belajar.load.balancing.domain;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,6 +44,7 @@ public class Barang implements Serializable {
     @Column(name = "harga_barang", nullable = false)
     private Integer hargaBarang;
 
+    @DateTimeFormat(pattern = "yyyy-M-dd")
     @Temporal(TemporalType.DATE)
     @Column(name = "tanggal_kadaluarsa", nullable = false)
     private Date tanggalKadaluarsa;
