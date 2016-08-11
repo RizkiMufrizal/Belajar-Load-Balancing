@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Data Barang</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/template.css}"/>
+    <link rel="stylesheet" th:href="@{/stylesheet/signin.css}"/>
 </head>
 <body>
 
+<div th:replace="Navbar :: navbar"></div>
+
+<div class="container">
+
+    <div class="template">
+
+        <a style="text-align: left" th:href="@{/TambahBarang}">
+            <button class="btn btn-primary">
+                Tambah Barang
+            </button>
+        </a>
+
+        <table class="table">
+            <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Nama Barang</th>
+                <th>Jenis Barang</th>
+                <th>Harga Barang</th>
+                <th>Tanggal Kadaluarsa</th>
+                <th>Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="b,x : ${barangs}">
+                <th scope="row" th:text="${x.index + 1}"></th>
+                <td th:text="${b.namaBarang}"></td>
+                <td th:text="${b.jenisBarang}"></td>
+                <td th:text="${b.hargaBarang}"></td>
+                <td th:text="${b.tanggalKadaluarsa}"></td>
+                <td>
+                    <button class="btn btn-success">
+                        Edit
+                    </button>
+                    <button class="btn btn-danger">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script th:src="@{/webjars/jquery/3.1.0/jquery.min.js}" type="application/javascript"></script>
+<script th:src="@{/webjars/tether/1.3.3/dist/js/tether.min.js}" type="application/javascript"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js}" type="application/javascript"></script>
 </body>
 </html>
