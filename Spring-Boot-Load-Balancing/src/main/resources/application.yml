@@ -88,6 +88,5 @@ spring:
 
 # tomcat konfiguration
 server:
-  tomcat:
-    access_log_enabled: true
-    basedir: target/tomcat
+  compression:
+    enabled: true
