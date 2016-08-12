@@ -1,6 +1,9 @@
 package com.rizki.mufrizal.belajar.load.balancing.controller;
 
+import com.rizki.mufrizal.belajar.load.balancing.repository.BarangRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,8 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PageController {
 
+    @Autowired
+    private BarangRepository barangRepository;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("barangs", barangRepository.findAll());
         return "Index";
     }
 
