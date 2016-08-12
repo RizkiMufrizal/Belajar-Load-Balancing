@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.rizki.mufrizal.belajar.load.balancing</groupId>
-    <artifactId>Spring-Boot-Load-Balancing</artifactId>
+    <artifactId>Belajar-Load-Balancing</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Spring Boot Load Balancing</name>
+    <name>Belajar Load Balancing</name>
     <description>aplikasi ini dibuat dalam rangka belajar load balancing</description>
 
     <parent>
