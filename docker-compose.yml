@@ -1,6 +1,6 @@
 mariadb:
   container_name: mariadb-server
-  image: mariadb:10.1.16
+  image: mariadb:latest
   environment:
     - MYSQL_ROOT_PASSWORD=root
     - MYSQL_DATABASE=microservicespringboot
@@ -8,6 +8,7 @@ mariadb:
     - MYSQL_PASSWORD=mufrizal
 
 server1-belajar-load-balancing:
+  command: bash -c 'sleep 10 && java -Dspring.profiles.active=container -jar /app.jar'
   container_name: server1-belajar-load-balancing
   image: rizki.mufrizal/belajar.spring.boot.load.balancing
   links:
@@ -16,9 +17,20 @@ server1-belajar-load-balancing:
     - 8081:8080
 
 server2-belajar-load-balancing:
+  command: bash -c 'sleep 15 && java -Dspring.profiles.active=container -jar /app.jar'
   container_name: server2-belajar-load-balancing
   image: rizki.mufrizal/belajar.spring.boot.load.balancing
   links:
     - mariadb
   ports:
     - 8082:8080
+
+haproxy-server:
+  container_name: haproxy-server
+  image: custom-haproxy
+  links:
+    - server1-belajar-load-balancing
+    - server2-belajar-load-balancing
+  ports:
+    - 8083:80
+    - 9001:9000
