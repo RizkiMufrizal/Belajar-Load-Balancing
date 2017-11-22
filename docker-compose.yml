@@ -1,27 +1,44 @@
-mariadb:
-  container_name: mariadb-server
-  image: mariadb:latest
+mariadb-master:
+  container_name: mariadb-master
+  image: jamiejackson/mariadb-replication:latest
   environment:
     - MYSQL_ROOT_PASSWORD=root
     - MYSQL_DATABASE=microservicespringboot
     - MYSQL_USER=rizki
     - MYSQL_PASSWORD=mufrizal
 
+mariadb-slave:
+  container_name: mariadb-slave
+  image: jamiejackson/mariadb-replication:latest
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=microservicespringboot
+    - MYSQL_USER=rizki
+    - MYSQL_PASSWORD=mufrizal
+  links:
+    - mariadb-master:master
+
+redis:
+  container_name: redis-server
+  image: redis:latest
+
 server1-belajar-load-balancing:
-  command: bash -c 'sleep 10 && java -Dspring.profiles.active=container -jar /app.jar'
+  command: bash -c 'sleep 20 && java -Dspring.profiles.active=container -jar /app.jar'
   container_name: server1-belajar-load-balancing
   image: rizki.mufrizal/belajar.spring.boot.load.balancing
   links:
-    - mariadb
+    - mariadb-master
+    - redis
   ports:
     - 8081:8080
 
 server2-belajar-load-balancing:
-  command: bash -c 'sleep 15 && java -Dspring.profiles.active=container -jar /app.jar'
+  command: bash -c 'sleep 25 && java -Dspring.profiles.active=container -jar /app.jar'
   container_name: server2-belajar-load-balancing
   image: rizki.mufrizal/belajar.spring.boot.load.balancing
   links:
-    - mariadb
+    - mariadb-master
+    - redis
   ports:
     - 8082:8080
 

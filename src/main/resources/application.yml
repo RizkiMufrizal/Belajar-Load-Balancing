@@ -1,5 +1,10 @@
 spring:
 
+  #redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
   # spring datasource jpa
   datasource:
     driver-class-name: org.h2.Driver
@@ -48,12 +53,17 @@ server:
 spring:
   profiles: container
 
+  #redis
+  redis:
+    host: ${REDIS_SERVER_PORT_6379_TCP_ADDR}
+    port: ${REDIS_PORT_6379_TCP_PORT}
+
   # spring datasource jpa
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://${MARIADB_PORT_3306_TCP_ADDR}:${MARIADB_PORT_3306_TCP_PORT}/${MARIADB_ENV_MYSQL_DATABASE}
-    username: ${MARIADB_ENV_MYSQL_USER}
-    password: ${MARIADB_ENV_MYSQL_PASSWORD}
+    url: jdbc:mysql://${MARIADB_MASTER_PORT_3306_TCP_ADDR}:${MARIADB_MASTER_PORT_3306_TCP_PORT}/${MARIADB_MASTER_ENV_MYSQL_DATABASE}
+    username: ${MARIADB_MASTER_ENV_MYSQL_USER}
+    password: ${MARIADB_MASTER_ENV_MYSQL_PASSWORD}
     poolName: SpringBootHikariCP
     maximumPoolSize: 5
     minimumIdle: 3
