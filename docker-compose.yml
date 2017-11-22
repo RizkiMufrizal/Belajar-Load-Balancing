@@ -18,9 +18,24 @@ mariadb-slave:
   links:
     - mariadb-master:master
 
-redis:
-  container_name: redis-server
-  image: redis:latest
+redis-master:
+  container_name: redis-master
+  image: bitnami/redis:latest
+  environment:
+    - REDIS_REPLICATION_MODE=master
+    - REDIS_PASSWORD=mufrizal
+
+redis-slave:
+  container_name: redis-slave
+  image: bitnami/redis:latest
+  environment:
+    - REDIS_REPLICATION_MODE=slave
+    - REDIS_MASTER_HOST=master
+    - REDIS_MASTER_PORT_NUMBER=6379
+    - REDIS_MASTER_PASSWORD=mufrizal
+    - REDIS_PASSWORD=mufrizal
+  links:
+    - redis-master:master
 
 server1-belajar-load-balancing:
   command: bash -c 'sleep 20 && java -Dspring.profiles.active=container -jar /app.jar'
@@ -28,7 +43,7 @@ server1-belajar-load-balancing:
   image: rizki.mufrizal/belajar.spring.boot.load.balancing
   links:
     - mariadb-master
-    - redis
+    - redis-master
   ports:
     - 8081:8080
 
@@ -38,7 +53,7 @@ server2-belajar-load-balancing:
   image: rizki.mufrizal/belajar.spring.boot.load.balancing
   links:
     - mariadb-master
-    - redis
+    - redis-master
   ports:
     - 8082:8080
 

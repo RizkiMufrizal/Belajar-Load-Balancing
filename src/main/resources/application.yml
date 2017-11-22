@@ -55,8 +55,9 @@ spring:
 
   #redis
   redis:
-    host: ${REDIS_SERVER_PORT_6379_TCP_ADDR}
-    port: ${REDIS_PORT_6379_TCP_PORT}
+    host: ${REDIS_MASTER_PORT_6379_TCP_ADDR}
+    port: ${REDIS_MASTER_PORT_6379_TCP_PORT}
+    password: ${REDIS_MASTER_ENV_REDIS_PASSWORD}
 
   # spring datasource jpa
   datasource:
